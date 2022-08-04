@@ -13,3 +13,13 @@ Operaciones:
 5. Retornarl el elemento frontal
 6. Retornar el tamaño de la cola
 """
+from cola import Cola
+
+cola = Cola()
+
+cola.push(12)
+cola.push(23)
+cola.push(56)
+cola.push(78)
+cola.pop()
+cola.show()
