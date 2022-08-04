@@ -17,3 +17,17 @@ Las pilas pueden ser de tamaño estatico y dinamico, se pueden implementar lista
 listas enlazadas.
 """
 
+from Pila import Pila
+
+pila = Pila(5)
+
+pila.push(23)
+pila.push(90)
+pila.push(45)
+pila.push(90)
+pila.push(100)
+pila.show()
+
+print("Size: %d"%(pila.Size()))
+print("Estado:", pila.empty())
+print("Top: %d"%(pila.Top()))
