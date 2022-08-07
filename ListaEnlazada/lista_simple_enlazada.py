@@ -16,6 +16,17 @@ class ListaSimpleEnlazada():
             aux = self.ultimo
             self.ultimo = aux.siguiente = Nodo(dato)
     
+    def agregar_inicio(self, dato):
+        if self.vacia()== True:
+            self.primero = self.ultimo  = Nodo(dato)
+        else:
+            aux = Nodo(dato)
+            aux.siguiente = self.primero
+            self.primero = aux  
+
+    def eliminar_inicio(self):
+        self.primero = self.primero.siguiente
+    
     def eliminar_ultimo(self):
         aux = self.primero
         while aux.siguiente != self.ultimo:
