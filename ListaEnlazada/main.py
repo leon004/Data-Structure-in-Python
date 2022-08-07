@@ -9,4 +9,18 @@ apunta al siguiente nodo en la lista o al valor null o None si es el ultimo nodo
 
 """
 
- 
+from lista_simple_enlazada import ListaSimpleEnlazada
+
+lista  = ListaSimpleEnlazada()
+
+lista.agregar_ultimo(12)
+lista.agregar_ultimo(2)
+lista.agregar_ultimo(25)
+lista.agregar_ultimo(19)
+
+lista.recorrido()
+
+print("*******************")
+print(lista.primero.dato)
+print(lista.ultimo.dato)
+
