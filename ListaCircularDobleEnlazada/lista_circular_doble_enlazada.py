@@ -1,36 +1,40 @@
+from cgi import print_arguments
+from tkinter import N
 from nodo import Nodo
 
+class ListaCircularDobleEnlazada:
 
-class ListaCircular():
     def __init__(self):
         self.primero = None
         self.ultimo = None
 
-    def Vacia(self): 
-        return self.primero == None
-    
-    def AgregarInicio(self,dato):
-        if self.Vacia():
+    def vacia(self):
+        if self.primero == None:
+            return True
+        else:
+            return False
+
+    def agregar_inicio(self, dato):
+        if self.vacia():
             self.primero = self.ultimo = Nodo(dato)
-            self.ultimo.siguiente = self.primero
         else:
             aux = Nodo(dato)
             aux.siguiente = self.primero
+            self.primero.anterior = aux
             self.primero = aux
-            self.ultimo.siguiente = self.primero
-    
-    def AgregarFinal(self,dato):
-        if self.Vacia():
+
+    def agregar_final(self, dato):
+        if self.vacia():
             self.primero = self.ultimo = Nodo(dato)
-            self.ultimo.siguiente = self.primero
         else:
             aux = self.ultimo
             self.ultimo = aux.siguiente = Nodo(dato)
-            self.ultimo.siguiente = self.primero
 
     def __unir_nodos(self):
-        self.primero.anterior = self.ultimo
-        self.ultimo.siguiente = self.primero
+        if self.primero != None:
+
+            self.primero.anterior = self.ultimo
+            self.ultimo.siguiente = self.primero
 
     def recorrer_inicio_a_fin(self):
         aux = self.primero
@@ -47,32 +51,35 @@ class ListaCircular():
             aux = aux.anterior
             if aux == self.ultimo:
                 break
+    
+    def eliminar_inicio(self):
+        if self.vacia():
+            print("Tu estructura esta vacia")
 
-    def Recorrer(self):
-        aux = self.primero
-        while aux:
-            print(aux.dato)
-            aux = aux.siguiente
-            if aux == self.primero:
-                break
-
-    def RemoverInicio(self):
-        if self.Vacia():
-            print("Lista vacia")
         elif self.primero == self.ultimo:
             self.primero = self.ultimo = None
         else:
             self.primero = self.primero.siguiente
-            self.ultimo.siguiente = self.primero
+        self.__unir_nodos()
 
-    def RemoverFinal(self):
-        if self.Vacia():
-            print("Lista Vacia")
+    def eliminar_ultimo(self):
+        if self.vacia():
+            print("Tu estructura esta vacia")
+
         elif self.primero == self.ultimo:
             self.primero = self.ultimo = None
-        else:
-            aux = self.primero
-            while aux.siguiente != self.ultimo:
+        else: 
+            self.ultimo = self.ultimo.anterior
+        
+        self.__unir_nodos()
+        
+    def buscar(self, dato):
+        aux = self.primero
+        while aux:
+            if aux.dato == dato:
+                return True
+            else:
                 aux = aux.siguiente
-            aux.siguiente = self.primero
-            self.ultimo = aux
+                if aux == self.primero:
+                    return False
+            
